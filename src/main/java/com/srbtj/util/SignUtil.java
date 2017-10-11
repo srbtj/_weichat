@@ -7,7 +7,7 @@ public class SignUtil {
 
 	private static String TOKEN = "wechat";
 	private static String KEY_SHA1 = "SHA-1";
-	private static char[] digit = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F' };
+	private static char[] digit = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
 	/***
 	 * 验证请求是否由微信发起
@@ -19,7 +19,7 @@ public class SignUtil {
 	 */
 	public static boolean checkSignature(String signature, String timestamp, String nonce) {
 
-		String[] arr = new String[] { signature, timestamp, nonce };
+		String[] arr = new String[] { TOKEN, timestamp, nonce };
 		// 将 token, timestamp, nonce 进行字符串排序
 		Arrays.sort(arr);
 

@@ -28,6 +28,7 @@ public class WechatSecurity {
 			@RequestParam(value = "nonce", required = true) String nonce,
 			@RequestParam(value = "echostr", required = true) String echostr) {
 
+		System.out.println("============================" + SignUtil.checkSignature(signature, timestamp, nonce));
 		try {
 
 			if (SignUtil.checkSignature(signature, timestamp, nonce)) {
