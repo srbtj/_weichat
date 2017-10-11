@@ -27,6 +27,14 @@
 		<servlet-name>springMVC</servlet-name>
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
+	
+	<!-- 初始化项目需要的启动文件 -->
+	<servlet>
+		<servlet-name>interface_url_init_servlet</servlet-name>
+		<servlet-class>com.srbtj.common.InterfaceUrlInitServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	
 	<filter>
 		<filter-name>DruidWebStatFilter</filter-name>
 		<filter-class>com.alibaba.druid.support.http.WebStatFilter</filter-class>

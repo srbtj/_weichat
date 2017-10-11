@@ -65,6 +65,12 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
+        
+        <dependency>
+		    <groupId>org.quartz-scheduler</groupId>
+		    <artifactId>quartz</artifactId>
+		    <version>2.2.1</version>
+		</dependency>
 
         <!-- 关系型数据库整合时需配置 如hibernate jpa等 -->
         <dependency>
@@ -111,6 +117,13 @@
             <artifactId>fastjson</artifactId>
             <version>1.2.3</version>
         </dependency>
+       
+        <dependency>
+			<groupId>net.sf.json-lib</groupId>
+			<artifactId>json-lib</artifactId>
+			<version>2.3</version>
+			<classifier>jdk15</classifier>
+		</dependency>
 
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
