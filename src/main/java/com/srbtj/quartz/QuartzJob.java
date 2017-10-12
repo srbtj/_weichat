@@ -9,6 +9,7 @@ public class QuartzJob {
 	private static Logger logger = Logger.getLogger(QuartzJob.class);
 	
 	public void workForToken() {
+		
 		try {
 			WechatTask timer = new WechatTask();
 			timer.getToken();

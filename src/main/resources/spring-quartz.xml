@@ -2,6 +2,31 @@
 <!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
 
 <beans>
+	<!-- 配置要调用的工作类 -->
 	<bean id="quartzJob" class="com.srbtj.quartz.QuartzJob"></bean>
+	<!-- 配置定时器执行的对象及方法 JobDetail -->
+	<bean id="quartzDetail"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<!-- 指定任务类 -->
+		<property name="targetObject" ref="quartzJob" />
+		<!-- 指定任务执行方法 -->
+		<property name="targetMethod" value="workForToken" />
+	</bean>
+	<!-- 配置定时器的触发器 -->
+	<bean id="quartzTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+		<property name="jobDetail" ref="quartzDetail" />
+		<!-- 定时器执行的时间 -->
+		<property name="cronExpression" value="0 0/5 * * * ?"/>
+	</bean>
 	
+	<!-- 指定定时器工厂类 -->
+	<bean
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="quartzTrigger" />
+			</list>
+		</property>
+	</bean>
 </beans>

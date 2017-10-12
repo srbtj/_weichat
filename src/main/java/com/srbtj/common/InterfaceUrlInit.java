@@ -10,6 +10,7 @@ public class InterfaceUrlInit {
 
 	public synchronized static void init() {
 
+		System.out.println("-----------------------------------");
 		ClassLoader loader = Thread.currentThread().getContextClassLoader();
 		Properties properties = new Properties();
 

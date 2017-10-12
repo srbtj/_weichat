@@ -11,7 +11,7 @@ public class InterfaceUrlInitServlet extends HttpServlet{
 	@Override
 	public void init(ServletConfig config) throws ServletException {
 		// TODO Auto-generated method stub
-		super.init();
+//		super.init();
 		System.out.println("========== init exec");
 		InterfaceUrlInit.init();
 	}
