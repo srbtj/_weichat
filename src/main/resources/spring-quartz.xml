@@ -17,12 +17,11 @@
 		class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
 		<property name="jobDetail" ref="quartzDetail" />
 		<!-- 定时器执行的时间 -->
-		<property name="cronExpression" value="0 0/5 * * * ?"/>
+		<property name="cronExpression" value="0 0/5 * * * ?" />
 	</bean>
-	
+
 	<!-- 指定定时器工厂类 -->
-	<bean
-		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
 		<property name="triggers">
 			<list>
 				<ref bean="quartzTrigger" />

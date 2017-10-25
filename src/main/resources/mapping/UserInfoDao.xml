@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.srbtj.dao.UserInfoDao">
+	<resultMap type="com.srbtj.entity.UserInfo" id="baseResult">
+		<id column="id" property="id"></id>
+		<result column="open_id" property="openId" />
+		<result column="session_key" property="sessionKey" />
+	</resultMap>
+	
+	<!-- 添加一条用户用户 session 数据  -->
+	<insert id="addUserOpenIdAndSessionKey" useGeneratedKeys="true" keyProperty="id">
+		insert into user_info (open_id, session_key)
+			values (#{openId}, #{sessionKey})
+	</insert>
+	
+	<!-- 更新信息 -->
+	<update id="updateUserInfoByOpenId">
+		update user_info set 
+			session_key = #{sessionKey}
+			where open_id = #{openId}
+	</update>
+	
+	<!-- 根据 open_id 查找用户数据 如果存在 则更新数据  -->
+	<select id="queryUserInfoByOpenId" resultMap="baseResult">
+		select id, open_id, session_key 
+		 from user_info 
+		 where open_id = #{openId}
+	</select>
+</mapper>

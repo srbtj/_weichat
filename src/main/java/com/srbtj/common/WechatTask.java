@@ -31,12 +31,12 @@ public class WechatTask {
 		params.put("secret", GlobalConstants.getInterfaceUrl("appSecret"));
 		System.out.println("我是定时器 我执行了...");
 		// 获取 返回的 access_token
-//		String jstoken = HttpUtil.sendGet(GlobalConstants.getInterfaceUrl("tokenUrl"), params);
+		String jstoken = HttpUtil.sendGet(GlobalConstants.getInterfaceUrl("tokenUrl"), params);
 //		// 撮取返回的 access_token
-//		String access_token = JSONObject.fromObject(jstoken).getString("access_token");
+		String access_token = JSONObject.fromObject(jstoken).getString("access_token");
 //		
 //		// 保存获得的 access_token
-//		GlobalConstants.interfaceUrlProperties.put("access_token", access_token);
-//		System.out.println("获取的token:" + GlobalConstants.interfaceUrlProperties.get("access_token"));
+		GlobalConstants.interfaceUrlProperties.put("access_token", access_token);
+		System.out.println("获取的token:" + GlobalConstants.interfaceUrlProperties.get("access_token"));
 	}
 }

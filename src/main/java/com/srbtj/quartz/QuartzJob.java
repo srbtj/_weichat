@@ -12,6 +12,7 @@ public class QuartzJob {
 		
 		try {
 			WechatTask timer = new WechatTask();
+			// 获取access_token
 			timer.getToken();
 		} catch (Exception e) {
 			// TODO: handle exception

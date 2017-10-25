@@ -21,6 +21,7 @@ public class HttpUtil {
 		CloseableHttpClient httpClient = null;
 		try {
 			String _url = buildUrl(url, params);
+			System.out.println("请求 url ===="+_url);
 			httpClient = HttpClients.createDefault();
 			
 			HttpGet httpGet = new HttpGet(_url);
@@ -39,7 +40,7 @@ public class HttpUtil {
 			
 			reader.close();
 			System.out.println(response);
-			return "";
+			return response.toString();
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);

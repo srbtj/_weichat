@@ -5,7 +5,7 @@ import java.util.Arrays;
 
 public class SignUtil {
 
-	private static String TOKEN = "wechat";
+	private static String TOKEN = "_wechat";
 	private static String KEY_SHA1 = "SHA-1";
 	private static char[] digit = { '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
