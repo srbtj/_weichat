@@ -1,13 +1,15 @@
 package com.srbtj.entity;
 
+import java.sql.Timestamp;
+
 public class UserInfo {
 
 	private int id;
 	private String openId;
 	private String sessionKey;
-	private String createTime;
+	private Timestamp createTime;
 	private String openIdSessionKey;
-	private String key;
+	private String thirdKey;
 	
 	public UserInfo(){}
 	
@@ -20,7 +22,7 @@ public class UserInfo {
 		this.openId = openId;
 		this.sessionKey = sessionKey;
 		this.openIdSessionKey = openIdSessionKey;
-		this.key = key;
+		this.setThirdKey(key);
 	}
 	
 	public int getId() {
@@ -42,13 +44,7 @@ public class UserInfo {
 		this.sessionKey = sessionKey;
 	}
 
-	public String getCreateTime() {
-		return createTime;
-	}
-
-	public void setCreateTime(String createTime) {
-		this.createTime = createTime;
-	}
+	 
 
 	public String getOpenIdSessionKey() {
 		return openIdSessionKey;
@@ -58,18 +54,25 @@ public class UserInfo {
 		this.openIdSessionKey = openIdSessionKey;
 	}
 
-	public String getKey() {
-		return key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
-	}
 
 	@Override
 	public String toString() {
-		return "UserInfo [id=" + id + ", openId=" + openId + ", sessionKey=" + sessionKey + "]";
+		return "UserInfo [id=" + id + ", openId=" + openId + ", sessionKey=" + sessionKey + ", createTime="+ createTime +"]";
 	}
-	
-	
+
+	public Timestamp getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Timestamp createTime) {
+		this.createTime = createTime;
+	}
+
+	public String getThirdKey() {
+		return thirdKey;
+	}
+
+	public void setThirdKey(String thirdKey) {
+		this.thirdKey = thirdKey;
+	}
 }

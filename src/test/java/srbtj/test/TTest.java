@@ -2,6 +2,8 @@ package srbtj.test;
 
 import static org.junit.Assert.*;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -9,6 +11,7 @@ import java.util.UUID;
 import org.junit.Test;
 
 import com.srbtj.common.WechatTask;
+import com.srbtj.entity.UserInfo;
 import com.srbtj.util.HttpUtil;
 
 public class TTest {
@@ -42,6 +45,13 @@ public class TTest {
 		try {
 			// 977047fd-eccb-4001-bdcb-ff698741b517
 			System.out.println(UUID.randomUUID().toString());
+			
+			UserInfo userInfo = new UserInfo();
+			Timestamp timestamp = new Timestamp(new Date().getTime());
+			
+			userInfo.setCreateTime(timestamp);
+			
+			System.out.println(userInfo.toString());
 //			new WechatTask().getToken();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

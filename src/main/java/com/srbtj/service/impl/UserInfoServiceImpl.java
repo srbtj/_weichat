@@ -1,7 +1,10 @@
 package com.srbtj.service.impl;
 
 import java.io.Console;
+import java.sql.Timestamp;
+import java.util.Date;
 
+import org.apache.ibatis.javassist.expr.NewArray;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +12,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.srbtj.dao.UserInfoDao;
 import com.srbtj.entity.UserInfo;
 import com.srbtj.service.UserInfoService;
+import com.srbtj.util.Utils;
 
 @Service
 public class UserInfoServiceImpl implements UserInfoService {
@@ -16,6 +20,7 @@ public class UserInfoServiceImpl implements UserInfoService {
 	@Autowired
 	private UserInfoDao userInfoDao;
 	
+	@SuppressWarnings("null")
 	public void addUserOpenIdAndSessionKey(String str) {
 		// TODO Auto-generated method stub
 		JSONObject object = JSONObject.parseObject(str);
@@ -27,7 +32,16 @@ public class UserInfoServiceImpl implements UserInfoService {
 		userInfo = queryUserInfoByOpenId(_openId);
 		
 		if (null == userInfo) {
-			userInfo = new UserInfo(_openId, _sessionKey);
+			userInfo = new UserInfo();
+			String uuid = Utils.getUUID();
+			Timestamp timestamp = new Timestamp(new Date().getTime());
+			userInfo.setCreateTime(timestamp);
+			userInfo.setThirdKey(uuid);
+			userInfo.setOpenId(_openId);
+			userInfo.setSessionKey(_sessionKey);
+			userInfo.setOpenIdSessionKey(_openId);
+			
+//			userInfo = new UserInfo(_openId, _sessionKey);
 			userInfoDao.addUserOpenIdAndSessionKey(userInfo);
 		} else {
 			userInfo.setSessionKey(_sessionKey);

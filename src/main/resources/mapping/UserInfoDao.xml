@@ -8,12 +8,15 @@
 		<id column="id" property="id"></id>
 		<result column="open_id" property="openId" />
 		<result column="session_key" property="sessionKey" />
+		<result column="openid_session_key" property="openIdSessionKey" />
+		<result column="create_time" property="createTime" />
+		<result column="third_key" property="thirdKey" />
 	</resultMap>
 	
 	<!-- 添加一条用户用户 session 数据  -->
 	<insert id="addUserOpenIdAndSessionKey" useGeneratedKeys="true" keyProperty="id">
-		insert into user_info (open_id, session_key)
-			values (#{openId}, #{sessionKey})
+		insert into user_info (open_id, session_key, openid_session_key, create_time, third_key)
+			values (#{openId}, #{sessionKey}, #{openIdSessionKey}, #{createTime}, #{thirdKey})
 	</insert>
 	
 	<!-- 更新信息 -->
