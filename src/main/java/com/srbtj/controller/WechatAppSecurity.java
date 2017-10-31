@@ -1,18 +1,20 @@
 package com.srbtj.controller;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Logger;
+import org.aspectj.weaver.WeaverStateInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.alibaba.fastjson.JSONObject;
 import com.srbtj.service.impl.UserInfoServiceImpl;
 import com.srbtj.util.GlobalConstants;
 import com.srbtj.util.HttpUtil;
@@ -22,6 +24,8 @@ import com.srbtj.util.Utils;
 @RequestMapping("/wechatapp")
 public class WechatAppSecurity {
 	
+	private static Logger logger = Logger.getLogger(WechatAppSecurity.class);
+
 	@Autowired
 	private UserInfoServiceImpl UserInfoServiceImpl;
 
@@ -35,7 +39,7 @@ public class WechatAppSecurity {
 	 * @throws Exception 
 	 */
 	@RequestMapping(value = "openIdAndSession", method = RequestMethod.GET)
-	public String openIdAndSession(HttpServletRequest request, HttpServletResponse response,
+	public void openIdAndSession(HttpServletRequest request, HttpServletResponse response,
 			@RequestParam(value = "code") String code) throws Exception {
 
 		System.out.println("i hava running ..............");
@@ -53,8 +57,17 @@ public class WechatAppSecurity {
 		System.out.println("code=====" + code + "返回结果=====" + result);
 		System.out.println(Utils.stringToJson(result));
 		
-		UserInfoServiceImpl.addUserOpenIdAndSessionKey(result);
+		String thirdKey = UserInfoServiceImpl.addUserOpenIdAndSessionKey(result);
 		// 将获得的 openId 与 sessionKey 保存至数据库
-		return "";
+		
+		try {
+			PrintWriter out = response.getWriter();
+			out.print(thirdKey);
+			out.close();
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			logger.error(e, e);
+		}
 	}
 }

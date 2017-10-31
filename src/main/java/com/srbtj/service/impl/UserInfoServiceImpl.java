@@ -21,12 +21,12 @@ public class UserInfoServiceImpl implements UserInfoService {
 	private UserInfoDao userInfoDao;
 	
 	@SuppressWarnings("null")
-	public void addUserOpenIdAndSessionKey(String str) {
+	public String addUserOpenIdAndSessionKey(String str) {
 		// TODO Auto-generated method stub
 		JSONObject object = JSONObject.parseObject(str);
 		String _openId = (String) object.get("openid");
 		String _sessionKey = (String) object.get("session_key");
-		
+		String _openIdSessionKey = _openId + _sessionKey;
 		UserInfo userInfo = null;
 		
 		userInfo = queryUserInfoByOpenId(_openId);
@@ -39,18 +39,19 @@ public class UserInfoServiceImpl implements UserInfoService {
 			userInfo.setThirdKey(uuid);
 			userInfo.setOpenId(_openId);
 			userInfo.setSessionKey(_sessionKey);
-			userInfo.setOpenIdSessionKey(_openId);
+			userInfo.setOpenIdSessionKey(_openIdSessionKey);
 			
 //			userInfo = new UserInfo(_openId, _sessionKey);
 			userInfoDao.addUserOpenIdAndSessionKey(userInfo);
 		} else {
 			userInfo.setSessionKey(_sessionKey);
+			userInfo.setOpenIdSessionKey(_openIdSessionKey);
 			userInfoDao.updateUserInfoByOpenId(userInfo);
 		}
 		
 		System.out.println("userinfo =====" + userInfo.toString());
-		//
-		//
+	
+		return userInfo.getThirdKey();
 	}
 
 	public UserInfo queryUserInfoByOpenId(String openId) {
